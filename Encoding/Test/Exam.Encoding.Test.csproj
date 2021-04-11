@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="5.10.3" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" />
+    <PackageReference Include="xBehave" Version="2.4.1" />
+    <PackageReference Include="xUnit" Version="2.4.1" />
+    <PackageReference Include="xUnit.Runner.VisualStudio" Version="2.4.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Application\Exam.Encoding.Application.csproj" />
+  </ItemGroup>
+</Project>

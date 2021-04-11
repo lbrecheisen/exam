@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Encoding",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "encoding-build",
+      "program": "${workspaceFolder}/Encoding/Application/bin/Debug/net5.0/Exam.Encoding.Application.dll",
+      "args": [],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}/Encoding/Application",
+      "stopAtEntry": false
+    }
+  ]
+}

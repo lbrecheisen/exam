@@ -1,0 +1,13 @@
+{
+  "omnisharp.enableEditorConfigSupport": true,
+  "omnisharp.enableRoslynAnalyzers": true,
+  "csharp.semanticHighlighting.enabled": true,
+  "files.exclude": {
+    "**/bin": true,
+    "**/obj": true,
+  },
+  "cSpell.words": [
+    "Xbehave",
+    "Xunit"
+  ]
+}

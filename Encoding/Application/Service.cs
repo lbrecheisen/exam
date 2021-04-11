@@ -1,0 +1,41 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using Exam.Encoding.Domain.Commands;
+using Exam.Encoding.Domain.Events;
+using MassTransit;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
+
+namespace Exam.Encoding.Application
+{
+    [PrimaryConstructor]
+    internal partial class Service : IHostedService
+    {
+        private readonly IConfiguration Configuration;
+        private readonly IHostApplicationLifetime Lifetime;
+        private readonly IRequestClient<EncodeSentence> Requester;
+
+        public async Task StartAsync(CancellationToken cancellationToken)
+        {
+            var sentence = Configuration["sentence"] ?? Console.ReadLine();
+
+            if (string.IsNullOrEmpty(sentence)) return;
+
+            var encodeSentence = new EncodeSentence
+            {
+                Sentence = sentence
+            };
+            var sentenceEncoded = await Requester.GetResponse<SentenceEncoded>(encodeSentence);
+
+            Console.WriteLine(sentenceEncoded.Message.Sentence);
+
+            Lifetime.StopApplication();
+        }
+
+        public Task StopAsync(CancellationToken cancellationToken)
+        {
+            return Task.CompletedTask;
+        }
+    }
+}
