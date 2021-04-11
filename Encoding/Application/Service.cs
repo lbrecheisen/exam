@@ -18,9 +18,7 @@ namespace Exam.Encoding.Application
 
         public async Task StartAsync(CancellationToken cancellationToken)
         {
-            var sentence = Configuration["sentence"] ?? Console.ReadLine();
-
-            if (string.IsNullOrEmpty(sentence)) return;
+            var sentence = Configuration["sentence"] ?? Console.ReadLine() ?? string.Empty;
 
             var encodeSentence = new EncodeSentence
             {
