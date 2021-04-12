@@ -19,8 +19,13 @@ namespace Exam.Encoding.Test.Acceptance
         }
 
         [Scenario]
-        [InlineData("Hello. This is a test.", "H2o. T2s is a t2t.")]
-        [InlineData(" And, another one. ", " A1d, a5r o1e. ")]
+        [InlineData("a", "a0a")]
+        [InlineData("aa", "a0a")]
+        [InlineData("ab", "a0b")]
+        [InlineData("aaa", "a1a")]
+        [InlineData(" AbBa ", " A2a ")]
+        [InlineData("This is a test.", "T2s i0s a0a t2t.")]
+        [InlineData("The:quick,brown;fox-jumps/over|the*lazy@dog...", "T1e:q3k,b3n;f1x-j3s/o2r|t1e*l2y@d1g...")]
         public void Encode(string sentence, string encoding)
         {
             string? result = null;

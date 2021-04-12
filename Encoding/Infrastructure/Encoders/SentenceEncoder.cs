@@ -14,11 +14,11 @@ namespace Exam.Encoding.Infrastructure.Encoders
                 .GroupAdjacent(char.IsLetter)
                 .Select(group => group.ToArray() switch
                 {
-                    char[] { Length: 1 or 2 } word => string.Concat(word),
-                    char[] word => $"{word[0]}{word[1..^1].Distinct().Count()}{word[^1]}",
+                    char[] { Length: > 1 } word when group.Key => $"{word[0]}{word[1..^1].Distinct().Count()}{word[^1]}",
+                    char[] { Length: 1 } word when group.Key => $"{word[0]}0{word[^1]}",
+                    char[] word when !group.Key => string.Concat(word),
                     _ => string.Empty
                 });
-
 
             return new ValueTask<string>(string.Concat(words));
         }
