@@ -18,7 +18,13 @@ namespace Exam.Encoding.Application
 
         public async Task StartAsync(CancellationToken cancellationToken)
         {
-            var sentence = Configuration["sentence"] ?? Console.ReadLine() ?? string.Empty;
+            var sentence = Configuration["sentence"];
+
+            if (string.IsNullOrEmpty(sentence))
+            {
+                Console.Write("Sentence: ");
+                sentence = Console.ReadLine() ?? string.Empty;
+            }
 
             var encodeSentence = new EncodeSentence
             {
@@ -26,7 +32,7 @@ namespace Exam.Encoding.Application
             };
             var sentenceEncoded = await Requester.GetResponse<SentenceEncoded>(encodeSentence);
 
-            Console.WriteLine(sentenceEncoded.Message.Sentence);
+            Console.WriteLine($"Encoding: {sentenceEncoded.Message.Sentence}");
 
             Lifetime.StopApplication();
         }
